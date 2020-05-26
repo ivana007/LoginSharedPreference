@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.example.loginsharedpreference.R;
 
+import modelo.Usuario;
+
 public class MainActivity extends AppCompatActivity {
 private EditText etmail,etpass;
 private Button btlogin,btregistro;
@@ -22,7 +24,10 @@ private MainActivityViewModel vm;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         iniciarVista();
+
         vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(MainActivityViewModel.class);
+        /*Usuario usuario=new Usuario((long) 12345,"juan","Perez","j@j.com","1234");
+        vm.DatosInicio(getApplicationContext(),usuario);*/
         vm.getCartelMutableLiveData().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -36,6 +41,7 @@ private MainActivityViewModel vm;
         carteltv=findViewById(R.id.tvcartel);
         btlogin=findViewById(R.id.btLogin);
         btregistro=findViewById(R.id.btRegistrar);
+
         btlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

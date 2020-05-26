@@ -35,8 +35,14 @@ public class MainActivityViewModel extends ViewModel {
 
     }
     public  void registrarDatos(Context context){
+        //borrar datos del shared
+        Usuario usuario=new Usuario((long)-1,"-1","-1","-1","-1");
+        ApiClient.guardar(context,usuario);
         Intent intent= new Intent(context, RegistroActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+    }
+    public void DatosInicio(Context context,Usuario usuario){
+        ApiClient.guardar(context,usuario);
     }
 }
